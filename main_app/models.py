@@ -2,14 +2,21 @@ from django.db import models
 from datetime import date
 
 # Create your models here.
+
+class Customer(models.Model):
+    name = models.CharField(max_length = 100)
+    def __str__(self):
+        return self.name
+
 class Flower(models.Model):
     name = models.CharField(max_length = 100)
     petalnum = models.IntegerField()
     color = models.CharField(max_length = 100)
     origin = models.CharField(max_length = 100)
+    customers = models.ManyToManyField(Customer, related_name='flowers')
 
     def __str__(self):
-        return self.name
+        return self.name    
     def hydrate_for_today(self):
         return self.hydrate_set.filter(date = date.today()).count()>=1
     
@@ -29,7 +36,7 @@ class Hydrate(models.Model):
     flower = models.ForeignKey(Flower, on_delete=models.CASCADE, default=None)
 
     def __str__(self):
-        return f'{self.get_type_display()} at {self.time}'
+        return f'{self.get_type_display()} {self.flower} at {self.time}'
     
     class Meta:
         ordering = ['-date']
