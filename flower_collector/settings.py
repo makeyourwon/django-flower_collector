@@ -16,7 +16,7 @@ import environ
 import dj_database_url
 import django_heroku
 
-ALLOWED_HOSTS = [ 'herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = [ '127.0.0.1','herokuapp.com']
 
 
 
