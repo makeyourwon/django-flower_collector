@@ -1,1 +1,2 @@
-.env
+flower_collector/.env
+.gitignore
