@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import date
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -14,6 +15,7 @@ class Flower(models.Model):
     color = models.CharField(max_length = 100)
     origin = models.CharField(max_length = 100)
     customers = models.ManyToManyField(Customer, related_name='flowers')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name    

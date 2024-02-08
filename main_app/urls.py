@@ -1,5 +1,6 @@
-from .views import Home, FlowerList, FlowerDetails, HydrateList, HydrateDetail, CustomerList, CustomerDetail, AddFlowerToCustomer,RemoveFlowerToCustomer;
+from .views import Home, FlowerList, FlowerDetails, HydrateList, HydrateDetail, CustomerList, CustomerDetail, AddFlowerToCustomer,RemoveFlowerToCustomer, CreateUserView, LoginView, VerifyUserView;
 from django.urls import path
+
 
 urlpatterns = [
     path('', Home.as_view(), name='home'),
@@ -11,5 +12,8 @@ urlpatterns = [
     path('customers/<int:id>/', CustomerDetail.as_view(), name='customer-detail'),
     path('customers/<int:customer_id>/add_flower/<int:flower_id>/', AddFlowerToCustomer.as_view(), name='add-flower-to-customer'),
     path('customers/<int:customer_id>/remove_flower/<int:flower_id>/', RemoveFlowerToCustomer.as_view(), name='remove-flower-to-customer'),
+    path('users/register/', CreateUserView.as_view(),name='create-user-view'),
+    path('users/login/', LoginView.as_view(),name='log-in-view'),
+    path('users/token/refresh/', VerifyUserView.as_view(),name='verify-user-view')
     
 ]
